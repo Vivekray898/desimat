@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DesiMatch - Find Your Connection</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Custom styles to extend Tailwind */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-bg {
+            position: relative;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden; /* To contain the canvas animation */
+        }
+        #loveAnimationCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #ef4444, #ec4899);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.25);
+        }
+        .plan-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Love Animation Canvas -->
+    <div class="hero-bg">
+        <canvas id="loveAnimationCanvas"></canvas>
+        
+        <!-- Header -->
+        <header class="bg-white bg-opacity-80 backdrop-blur-sm sticky top-0 z-10 shadow-sm">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="text-2xl font-bold font-playfair text-red-500">
+                    <a href="#">DesiMatch</a>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="hover:text-red-500 transition">Features</a>
+                    <a href="#plans" class="hover:text-red-500 transition">Plans</a>
+                    <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                     <a href="tel:7029190762" class="text-sm flex items-center space-x-2 hover:text-red-500">
+                        <i class="fas fa-phone"></i>
+                        <span>7029190762</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <main class="hero-content">
+            <div class="container mx-auto px-6 py-32 md:py-48 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold font-playfair text-gray-900 leading-tight mb-4">Find Your Perfect Match.</h1>
+                <p class="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">Join India's most exclusive community for meaningful connections, friendship, and more.</p>
+                <a href="#plans" class="btn-primary font-bold py-4 px-8 rounded-lg shadow-lg text-lg">View Membership Plans</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-white py-20">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold font-playfair mb-12">Why Choose DesiMatch?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <i class="fas fa-users text-4xl text-red-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Exclusive Community</h3>
+                    <p class="text-gray-600">Connect with a curated network of verified and interesting individuals.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <i class="fas fa-hand-holding-dollar text-4xl text-red-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Earning Potential</h3>
+                    <p class="text-gray-600">Our platform offers unique opportunities for social engagement and earning.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                    <i class="fas fa-shield-halved text-4xl text-red-400 mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Privacy & Safety</h3>
+                    <p class="text-gray-600">Your privacy is our priority. Chat and connect in a secure environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Plans Section -->
+    <section id="plans" class="py-20 bg-pink-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center font-playfair mb-12">Our Membership Plans</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Silver Plan -->
+                <div class="plan-card bg-white rounded-2xl p-8 flex flex-col shadow-lg border-2 border-gray-200">
+                    <h3 class="text-2xl font-bold text-pink-500 mb-2">Silver Plan</h3>
+                    <p class="text-4xl font-bold mb-4">₹ 1500 <span class="text-lg font-normal text-gray-500">/ 1 month</span></p>
+                    <p class="text-gray-500 mb-6">Earning: ₹ 20,000 - ₹ 25,000 per month</p>
+                    <ul class="space-y-4 text-gray-700 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Instant Activation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Phone of Friends</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Shared Number - 300</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Online Dating</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Offline Chatting</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Video Chatting</li>
+                    </ul>
+                    <button data-plan="Silver" class="register-btn mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition">Get Register Here</button>
+                </div>
+
+                <!-- Gold Plan -->
+                <div class="plan-card bg-white rounded-2xl p-8 flex flex-col shadow-lg border-2 border-red-500 relative">
+                    <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-red-500 text-white text-sm font-bold px-4 py-1 rounded-full">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold text-red-500 mb-2">Gold Plan</h3>
+                    <p class="text-4xl font-bold mb-4">₹ 2500 <span class="text-lg font-normal text-gray-500">/ 3 months</span></p>
+                    <p class="text-gray-500 mb-6">Earning: ₹ 25,000 - ₹ 30,000 per month</p>
+                    <ul class="space-y-4 text-gray-700 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Instant Activation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Phone of Friends</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Shared Number - 300</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Online Dating</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Offline Chatting</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Video Chatting</li>
+                    </ul>
+                    <button data-plan="Gold" class="register-btn mt-8 w-full btn-primary text-white font-bold py-3 px-4 rounded-lg shadow-lg">Get Register Here</button>
+                </div>
+
+                <!-- Diamond Plan -->
+                <div class="plan-card bg-white rounded-2xl p-8 flex flex-col shadow-lg border-2 border-gray-200">
+                    <h3 class="text-2xl font-bold text-pink-500 mb-2">Diamond Plan</h3>
+                    <p class="text-4xl font-bold mb-4">₹ 5500 <span class="text-lg font-normal text-gray-500">/ 12 months</span></p>
+                    <p class="text-gray-500 mb-6">Earning: ₹ 35,000 - ₹ 40,000 per month</p>
+                    <ul class="space-y-4 text-gray-700 flex-grow">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Instant Activation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Phone of Friends</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Shared Number - 300</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Online Dating</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Offline Chatting</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-3"></i>Video Chatting</li>
+                    </ul>
+                    <button data-plan="Diamond" class="register-btn mt-8 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition">Get Register Here</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <footer id="contact" class="bg-gray-800 text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">Contact Us</h3>
+            <p class="mb-2"><i class="fas fa-phone mr-2 text-pink-400"></i>Customer Help Line: 7029190762</p>
+            <p class="mb-6"><i class="fas fa-map-marker-alt mr-2 text-pink-400"></i>Address: 23/543, CP Ramaswamy Iyer Rd, Abiramapuram, Chennai, Tamil Nadu 600028</p>
+            <div class="border-t border-gray-700 pt-6 mt-6">
+                <p>&copy; 2025 DesiMatch. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 invisible opacity-0">
+        <div class="modal-content bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 transform scale-95">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-gray-900">Register for <span id="modalPlanTitle" class="text-red-500"></span> Plan</h2>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-gray-600">&times;</button>
+            </div>
+            <p id="modalMessage" class="text-center mb-4 font-semibold"></p>
+            <form id="signupForm">
+                <input type="hidden" id="selectedPlan" name="selectedPlan" value="">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 mb-2">Name</label>
+                    <input type="text" id="name" name="name" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter Your Name" required>
+                </div>
+                <div class="mb-4">
+                    <label for="number" class="block text-gray-700 mb-2">Number</label>
+                    <input type="tel" id="number" name="number" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter Your Mobile Number" required>
+                </div>
+                <div class="mb-4">
+                    <label for="gender" class="block text-gray-700 mb-2">Gender</label>
+                    <select id="gender" name="gender" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="city" class="block text-gray-700 mb-2">City</label>
+                    <input type="text" id="city" name="city" class="w-full bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter Your City" required>
+                </div>
+                <div class="flex items-center justify-between mb-6">
+                    <input type="text" id="otp" name="otp" class="w-2/3 bg-gray-100 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Enter OTP (demo only)">
+                    <button type="button" id="sendOtpBtn" class="w-1/3 ml-4 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-4 rounded-lg transition">Send OTP</button>
+                </div>
+                <button type="submit" class="w-full btn-primary font-bold py-3 px-4 rounded-lg shadow-lg">Complete Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Your project's Firebase configuration using the details you provided.
+        const firebaseConfig = {
+            apiKey: "AIzaSyDIacfnRGHj0W7zhAm6CJKllxW1VkZuFFw",
+            authDomain: "wooautoprint-506ed.firebaseapp.com",
+            projectId: "wooautoprint-506ed",
+            storageBucket: "wooautoprint-506ed.appspot.com",
+            messagingSenderId: "2365279787",
+            appId: "1:2365279787:android:a9941efb00979a7516a46e" 
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- All other JavaScript from before ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('loveAnimationCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = document.querySelector('.hero-bg').offsetHeight;
+            let hearts = [];
+            function Heart(t,e,i,s){this.x=t,this.y=e,this.size=i,this.speed=s,this.opacity=Math.random()*.5+.2}Heart.prototype.update=function(){this.y-=this.speed,this.y<-this.size&&(this.y=canvas.height+this.size,this.x=Math.random()*canvas.width)},Heart.prototype.draw=function(){ctx.beginPath(),ctx.moveTo(this.x,this.y+this.size/4),ctx.bezierCurveTo(this.x,this.y,this.x-this.size/2,this.y,this.x-this.size/2,this.y+this.size/4),ctx.bezierCurveTo(this.x-this.size/2,this.y+this.size/2,this.x,this.y+this.size,this.x,this.y+this.size),ctx.bezierCurveTo(this.x,this.y+this.size,this.x+this.size/2,this.y+this.size/2,this.x+this.size/2,this.y+this.size/4),ctx.bezierCurveTo(this.x+this.size/2,this.y,this.x,this.y,this.x,this.y+this.size/4),ctx.fillStyle=`rgba(236, 72, 153, ${this.opacity})`,ctx.fill(),ctx.closePath()},window.addEventListener("resize",()=>{canvas.width=window.innerWidth,canvas.height=document.querySelector(".hero-bg").offsetHeight,n()});function n(){hearts=[];for(let t=0;t<50;t++){const e=Math.random()*canvas.width,i=Math.random()*canvas.height,s=10+20*Math.random(),o=.5+1*Math.random();hearts.push(new Heart(e,i,s,o))}}function a(){ctx.clearRect(0,0,canvas.width,canvas.height),hearts.forEach(t=>{t.update(),t.draw()}),requestAnimationFrame(a)}n(),a();
+            const registerModal=document.getElementById("registerModal"),closeModalBtn=document.getElementById("closeModalBtn"),registerBtns=document.querySelectorAll(".register-btn"),modalPlanTitle=document.getElementById("modalPlanTitle"),selectedPlanInput=document.getElementById("selectedPlan"),signupForm=document.getElementById("signupForm"),sendOtpBtn=document.getElementById("sendOtpBtn"),modalMessage=document.getElementById("modalMessage");function o(t){modalPlanTitle.textContent=t,selectedPlanInput.value=t,modalMessage.textContent="",signupForm.reset(),registerModal.classList.remove("invisible","opacity-0"),registerModal.querySelector(".modal-content").classList.remove("scale-95"),registerModal.querySelector(".modal-content").classList.add("scale-100")}function l(){registerModal.classList.add("opacity-0"),registerModal.querySelector(".modal-content").classList.add("scale-95"),setTimeout(()=>{registerModal.classList.add("invisible")},300)}registerBtns.forEach(t=>{t.addEventListener("click",()=>{const e=t.getAttribute("data-plan");o(e)})}),closeModalBtn.addEventListener("click",l),registerModal.addEventListener("click",t=>{t.target===registerModal&&l()}),sendOtpBtn.addEventListener("click",()=>{document.getElementById("number").value.trim().length>9?(sendOtpBtn.textContent="OTP Sent!",sendOtpBtn.classList.add("bg-green-500","text-white"),modalMessage.textContent="An OTP has been sent to your number.",modalMessage.classList.remove("text-red-600"),modalMessage.classList.add("text-green-600"),setTimeout(()=>{sendOtpBtn.textContent="Send OTP",sendOtpBtn.classList.remove("bg-green-500","text-white")},4e3)):(modalMessage.textContent="Please enter a valid 10-digit mobile number.",modalMessage.classList.remove("text-green-600"),modalMessage.classList.add("text-red-600"))});
+            
+            // --- UPDATED: Form Submission with Firebase ---
+            signupForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitButton = e.target.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Registering...';
+
+                const formData = new FormData(signupForm);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    // Add a new document with a generated ID to the "registrations" collection.
+                    const docRef = await addDoc(collection(db, "registrations"), {
+                        name: data.name,
+                        number: data.number,
+                        gender: data.gender,
+                        city: data.city,
+                        plan: data.selectedPlan,
+                        registeredAt: new Date() // Add a timestamp
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                    
+                    modalMessage.textContent = `Thank you for registering for the ${data.plan} plan!`;
+                    modalMessage.classList.remove("text-red-600");
+                    modalMessage.classList.add("text-green-600");
+                    signupForm.style.display = 'none';
+                    
+                    setTimeout(() => {
+                        l(); // Close modal
+                        signupForm.style.display = 'block'; // Show form again
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Complete Registration';
+                    }, 3000);
+
+                } catch (error) {
+                    console.error("Error adding document: ", error);
+                    modalMessage.textContent = "Registration failed. Please try again.";
+                    modalMessage.classList.remove("text-green-600");
+                    modalMessage.classList.add("text-red-600");
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Complete Registration';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
