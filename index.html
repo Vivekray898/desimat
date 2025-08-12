@@ -33,9 +33,11 @@
 </head>
 <body class="bg-hero text-white">
 
-    <div class="min-h-screen flex flex-col items-center justify-center p-6">
+    <!-- Main container uses flexbox to position footer at the bottom -->
+    <div class="min-h-screen flex flex-col justify-between p-4 sm:p-6">
         
-        <main class="text-center fade-in">
+        <!-- Main content is centered -->
+        <main class="text-center fade-in my-auto">
             <!-- Logo Placeholder -->
             <div class="mb-8">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
@@ -44,27 +46,27 @@
                 <h2 class="text-2xl font-bold tracking-wider mt-2">SoulMate</h2>
             </div>
 
-            <!-- Main Heading -->
+            <!-- Main Heading with responsive font size -->
             <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">A New Chapter in Love is Coming</h1>
             <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-pink-100">We're putting the final touches on a place where meaningful connections blossom. Get ready to meet your match!</p>
 
-            <!-- Countdown Timer -->
-            <div id="countdown" class="flex justify-center gap-4 md:gap-8 my-10">
-                <div class="text-center bg-white/20 p-4 rounded-lg w-24">
-                    <div id="days" class="text-4xl font-bold">00</div>
-                    <div class="text-sm uppercase tracking-widest">Days</div>
+            <!-- Countdown Timer with responsive sizing -->
+            <div id="countdown" class="flex justify-center gap-2 sm:gap-4 md:gap-8 my-10">
+                <div class="text-center bg-white/20 p-3 sm:p-4 rounded-lg w-20 sm:w-24">
+                    <div id="days" class="text-3xl sm:text-4xl font-bold">00</div>
+                    <div class="text-xs sm:text-sm uppercase tracking-widest">Days</div>
                 </div>
-                <div class="text-center bg-white/20 p-4 rounded-lg w-24">
-                    <div id="hours" class="text-4xl font-bold">00</div>
-                    <div class="text-sm uppercase tracking-widest">Hours</div>
+                <div class="text-center bg-white/20 p-3 sm:p-4 rounded-lg w-20 sm:w-24">
+                    <div id="hours" class="text-3xl sm:text-4xl font-bold">00</div>
+                    <div class="text-xs sm:text-sm uppercase tracking-widest">Hours</div>
                 </div>
-                <div class="text-center bg-white/20 p-4 rounded-lg w-24">
-                    <div id="minutes" class="text-4xl font-bold">00</div>
-                    <div class="text-sm uppercase tracking-widest">Minutes</div>
+                <div class="text-center bg-white/20 p-3 sm:p-4 rounded-lg w-20 sm:w-24">
+                    <div id="minutes" class="text-3xl sm:text-4xl font-bold">00</div>
+                    <div class="text-xs sm:text-sm uppercase tracking-widest">Minutes</div>
                 </div>
-                <div class="text-center bg-white/20 p-4 rounded-lg w-24">
-                    <div id="seconds" class="text-4xl font-bold">00</div>
-                    <div class="text-sm uppercase tracking-widest">Seconds</div>
+                <div class="text-center bg-white/20 p-3 sm:p-4 rounded-lg w-20 sm:w-24">
+                    <div id="seconds" class="text-3xl sm:text-4xl font-bold">00</div>
+                    <div class="text-xs sm:text-sm uppercase tracking-widest">Seconds</div>
                 </div>
             </div>
             
@@ -87,7 +89,7 @@
         </main>
 
         <!-- Footer -->
-        <footer class="absolute bottom-6 text-center text-pink-200 text-sm">
+        <footer class="text-center text-pink-200 text-sm">
             &copy; <span id="year"></span> SoulMate. All Rights Reserved. Finding love is a journey, not a destination.
         </footer>
     </div>
